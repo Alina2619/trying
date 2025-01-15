@@ -1,0 +1,11 @@
+{
+  "name": "jenkins-hello-world",
+  "version": "1.0.0",
+  "description": "A simple project to test Jenkins build",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
