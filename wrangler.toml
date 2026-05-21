@@ -1,8 +1,10 @@
-name = "cloudflare-d1-app"
+name = "trying"
 
 main = "worker.js"
 
 compatibility_date = "2026-05-21"
+
+workers_dev = true
 
 [[d1_databases]]
 binding = "DB"
