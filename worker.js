@@ -2,6 +2,18 @@ export default {
 
   async fetch(request, env) {
 
+    const corsHeaders = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    };
+
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        headers: corsHeaders
+      });
+    }
+
     const url = new URL(request.url);
 
     if (
@@ -11,12 +23,16 @@ export default {
 
       const result = await env.DB
         .prepare(
-          "SELECT * FROM users"
+          "SELECT * FROM users ORDER BY id DESC"
         )
         .all();
 
-      return Response.json(result.results);
-
+      return Response.json(
+        result.results,
+        {
+          headers: corsHeaders
+        }
+      );
     }
 
     if (
@@ -24,11 +40,12 @@ export default {
       request.method === "POST"
     ) {
 
-      const body = await request.json();
+      const body =
+        await request.json();
 
       await env.DB
         .prepare(
-          "INSERT INTO users(name,email) VALUES(?,?)"
+          "INSERT INTO users (name,email) VALUES (?,?)"
         )
         .bind(
           body.name,
@@ -36,19 +53,24 @@ export default {
         )
         .run();
 
-      return Response.json({
-        success: true
-      });
-
+      return Response.json(
+        {
+          success:true,
+          message:"User saved"
+        },
+        {
+          headers:corsHeaders
+        }
+      );
     }
 
     return new Response(
       "Not Found",
       {
-        status: 404
+        status:404,
+        headers:corsHeaders
       }
     );
-
   }
 
 };
