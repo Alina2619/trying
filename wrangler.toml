@@ -4,9 +4,7 @@ main = "worker.js"
 
 compatibility_date = "2026-05-21"
 
-workers_dev = true
-
 [[d1_databases]]
 binding = "DB"
 database_name = "mydb"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "YOUR_D1_DATABASE_ID"
