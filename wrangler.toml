@@ -1,4 +1,4 @@
-name = "db-worker"
+name = "cloudflare-d1-app"
 
 main = "worker.js"
 
@@ -7,4 +7,4 @@ compatibility_date = "2026-05-21"
 [[d1_databases]]
 binding = "DB"
 database_name = "mydb"
-database_id = "YOUR_DATABASE_ID"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
